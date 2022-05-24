@@ -1,0 +1,23 @@
+query ContentNodePermission1 {
+  scope(role: ANONYMOUS, operations: [READ])
+}
+
+
+query ContentNodePermission2 {
+  scope(role: AUTHENTICATED, operations: [READ])
+}
+
+
+query ContentNodePermission3 {
+  scope(role: ADMIN, operations: [READ])
+}
+
+
+query ContentNodePermission4 {
+  scope(role: STAFF, operations: [READ])
+}
+
+
+query ContentNodePermission5 {
+  scope(role: RUNTIME, operations: [READ])
+}

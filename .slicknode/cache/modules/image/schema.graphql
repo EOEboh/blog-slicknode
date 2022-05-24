@@ -1,0 +1,52 @@
+"""Information about an image that is stored in persistent storage backend"""
+type Image implements Node & TimeStampedInterface {
+  """The global ID of the object"""
+  id: ID! @validateGid
+
+  """The size of the image in bytes"""
+  size: Int
+
+  """The width of the original image"""
+  width: Int
+
+  """The height of the original image"""
+  height: Int
+
+  """The mime type of the image"""
+  mimeType: String! @validateRegex(pattern:"^image\\/([a-z0-9-]+)((\\.|-|\\+)([a-z0-9]+))?$") @validateLength(max:128)
+
+  """The storage key where the image is located"""
+  key: String! @index
+
+  """The bucket name where the image is stored"""
+  bucket: String!
+
+  """The user that created the image"""
+  createdBy: User
+
+  """The time when the image was uploaded"""
+  uploadedAt: DateTime
+
+  """The time when the object was first added"""
+  createdAt: DateTime! @index
+
+  """The time when the object was last updated"""
+  lastUpdatedAt: DateTime @index
+}
+
+"""Method to resize an image"""
+enum ImageResizeMethod {
+  """Crop to fit within dimensions"""
+  CROP
+
+  """Smart crop using focal points of the image"""
+  SMART
+
+  """Resize to fit within dimensions without cropping"""
+  FIT
+}
+
+extend type User {
+  """A profile image of the user"""
+  image: Image
+}

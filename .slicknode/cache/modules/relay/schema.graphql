@@ -1,0 +1,12 @@
+interface Node {
+  """The global ID of the object"""
+  id: ID! @validateGid
+}
+
+extend type Query {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}

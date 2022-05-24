@@ -1,0 +1,14 @@
+query LocalePermission1 {
+  scope(role: ANONYMOUS, operations: [READ])
+}
+
+
+query LocalePermission2 {
+  scope(role: ADMIN, operations: [UPDATE])
+}
+
+
+query LocalePermission3 {
+  scope(role: ADMIN, operations: [CREATE, DELETE])
+  node(filter: { isDefault: false })
+}

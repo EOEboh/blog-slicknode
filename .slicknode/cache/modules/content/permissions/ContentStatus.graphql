@@ -1,0 +1,14 @@
+query ContentStatusPermission1 {
+  scope(role: STAFF, operations: [READ])
+}
+
+
+query ContentStatusPermission2 {
+  scope(role: RUNTIME, operations: [READ])
+}
+
+
+query ContentStatusPermission3 {
+  scope(role: ADMIN, operations: [CREATE, UPDATE, DELETE])
+  node(filter: { name: { notIn: ["PUBLISHED", "DRAFT"] } })
+}

@@ -1,0 +1,16 @@
+query Emmanuel_PagePermission1 {
+  scope(role: ANONYMOUS, operations: [READ])
+}
+
+
+query Emmanuel_PagePermission2 {
+  scope(role: STAFF, operations: [CREATE, UPDATE, DELETE, PUBLISH, UNPUBLISH])
+}
+
+
+query Emmanuel_PagePermission3 {
+  scope(
+    role: RUNTIME
+    operations: [CREATE, UPDATE, DELETE, PUBLISH, UNPUBLISH, READ]
+  )
+}

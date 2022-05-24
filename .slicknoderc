@@ -1,0 +1,8 @@
+{
+  "default": {
+    "endpoint": "https://api.us-east-1.aws.slicknode.com/v1/slicknode-blog-001",
+    "alias": "slicknode-blog-001",
+    "name": "slicknode-blog",
+    "id": "UHJvamVjdDo3NjY"
+  }
+}

@@ -1,0 +1,65 @@
+"""Interface for content management enabled types"""
+interface Content {
+  """The main content node that groups the nodes with individual translations"""
+  contentNode: ContentNode!
+
+  """The locale of the content node"""
+  locale: Locale!
+
+  """The current status of the node"""
+  status: ContentStatus!
+
+  """The time when the node was last published"""
+  publishedAt: DateTime
+
+  """The user that published the node"""
+  publishedBy: User
+
+  """The time when the object was first added"""
+  createdAt: DateTime! @index
+
+  """The user that created the node"""
+  createdBy: User
+
+  """The time when the object was last updated"""
+  lastUpdatedAt: DateTime @index
+
+  """The user that last updated the node"""
+  lastUpdatedBy: User
+}
+
+type ContentNode implements Node {
+  """The global ID of the object"""
+  id: ID! @validateGid
+
+  """The node type that the ContentNode belongs to"""
+  type: String!
+}
+
+type Locale implements Node @autocomplete(fields: ["name","code"]) {
+  """The global ID of the object"""
+  id: ID! @validateGid
+
+  """Name of the locale"""
+  name: String!
+
+  """ISO 639-1 locale code"""
+  code: String! @unique @validateRegex(pattern:"^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?$")
+
+  """True if locale is currently active."""
+  isActive: Boolean!
+
+  """Locale is used if no other locale is specified"""
+  isDefault: Boolean!
+}
+
+type ContentStatus implements Node @autocomplete(fields: ["label"]) {
+  """The global ID of the object"""
+  id: ID! @validateGid
+
+  """The name of the status"""
+  name: String! @unique @validateRegex(pattern:"^[A-Z][_0-9A-Z]*$")
+
+  """The label of the status as displayed in the console"""
+  label: String!
+}
