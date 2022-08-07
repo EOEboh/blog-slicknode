@@ -20,8 +20,8 @@ import client from './client';
 
 const Greeting = () => {
   // Use GraphQL queries to load and mutate data from Slicknode
-  const { data, loading } = useQuery(gql`
-    query getUser{
+  const { data, loading } = useQuery( gql`
+    query {
       getUserById(id: "VXNlcjox") {
         id
         email
@@ -29,10 +29,12 @@ const Greeting = () => {
     }
   }
   `);
+  console.log(data);
+  
   if (loading) {
     return 'Loading...';
-  } else if (data && data.getUser.getUserById) {
-    return `Welcome back, ${data.getUser.getUserById.id} ${data.getUser.getUserById.email}`;
+  } else if (data && data.getUserById) {
+    return `Welcome back, ${data.getUserById.id} ${data.getUserById.email}`;
   } else {
     return 'Hello stranger';
   }
